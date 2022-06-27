@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pyy.distributedSolutions.distributedLock.dbLock.dao.GlobalLockTableDAO">
+
+    <insert id="insertSelectiveWithTest" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.pyy.distributedSolutions.distributedLock.dbLock.pojo.GlobalLockTable">
+    insert into `globallocktable` (`id`,
+    `lockKey`, `createTime` )
+    select #{id,jdbcType=INTEGER}, #{lockKey,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+    from dual where not exists
+    (select 1 from globallocktable where lockKey = #{lockKey,jdbcType=VARCHAR})
+    </insert>
+
+    <delete id="deleteByLockKey">
+        DELETE FROM globallocktable where lockKey = #{lockKey,jdbcType=VARCHAR}
+    </delete>
+
+    <delete id="deleteByPrimaryKey">
+        DELETE FROM globallocktable where id = #{id}
+    </delete>
+
+    <select id="selectByLockKey" resultType="com.pyy.distributedSolutions.distributedLock.dbLock.pojo.GlobalLockTable">
+        SELECT * FROM globallocktable where lockKey = #{lockKey,jdbcType=VARCHAR}
+    </select>
+</mapper>

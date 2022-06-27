@@ -1,0 +1,11 @@
+参考案例https://cloud.tencent.com/developer/article/1530207
+
+windows 如何使用nginx
+    1、打开cmd命令窗口，切换到nginx目录下，输入命令 nginx.exe 或者 start nginx ，回车即可
+    2、检查Nginx是否启动成功 直接在浏览器地址栏输入网址 http://localhost:80，回车，有没有出现welcom to nginx 页面
+    3、或者在 dos命令窗口输入tasklist /fi “imagename eq nginx.exe”
+    4、关闭nginx 输入nginx命令  nginx -s stop(快速停止nginx)  或  nginx -s quit(完整有序的停止nginx)。
+
+    nginx -s reload（重启nginx）
+    nginx -s stop（快速停止nginx）
+    nginx -s quit（完整有序的停止nginx）
