@@ -15,6 +15,7 @@ spring: #springboot的配置
     host: 192.168.119.128
     port: 6379
     password: 000415
+    database: 0
 
 # mybatis-plus相关配置
 mybatis-plus:
